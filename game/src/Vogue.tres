@@ -3,6 +3,6 @@
 [ext_resource path="res://src/Vogue.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 220
+size = 110
 extra_spacing_char = -26
 font_data = ExtResource( 1 )

@@ -1,3 +1,23 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource path="res://src/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://objects/Player.tscn" type="PackedScene" id=2]
+
+[node name="Game" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 4
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 327681, 0, 65537, 327682, 0, 2, 327683, 0, 2, 327684, 0, 2, 327685, 0, 2, 327686, 0, 2, 327687, 0, 2, 327688, 0, 65538, 327696, 0, 65537, 327697, 0, 2, 327698, 0, 2, 327699, 0, 2, 327700, 0, 2, 327701, 0, 2, 327702, 0, 2, 327703, 0, 65538, 393217, 0, 131072, 393224, 0, 131072, 393232, 0, 131072, 393239, 0, 131072, 458753, 0, 131072, 458756, 2, 0, 458760, 0, 131072, 458768, 0, 131072, 458775, 0, 131072, 524289, 0, 131072, 524296, 0, 131072, 524304, 0, 131072, 524311, 0, 131072, 589825, 0, 131073, 589826, 0, 2, 589827, 0, 2, 589828, 0, 2, 589829, 0, 2, 589830, 0, 2, 589831, 0, 2, 589832, 0, 131074, 589840, 0, 131073, 589841, 0, 2, 589842, 0, 2, 589843, 0, 2, 589844, 0, 2, 589845, 0, 2, 589846, 0, 2, 589847, 0, 131074, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655376, 1, 0, 655377, 1, 0, 655378, 1, 0, 655379, 1, 0, 655380, 1, 0, 655381, 1, 0, 655382, 1, 0, 655383, 1, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 76, 263 )
+
+[node name="Player2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 714, 262 )
+flipped = true
