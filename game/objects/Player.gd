@@ -1,6 +1,3 @@
-# TODO fix animation when jumping
-# TODO Add left facing jumps
-
 extends RigidBody2D
 
 const MAX_SPEED : float = 200.0
@@ -54,19 +51,29 @@ func _process(delta):
 		elif direction < 0:
 			body_anim.animation = "move_left"
 		body_anim.playing = true
-	else:
+	elif state == State.Grounded:
 		body_anim.playing = false
 	
-	if state == State.Jumping and body_anim.animation != "jump":
-		body_anim.animation = "jump"
+	if state == State.Jumping and body_anim.animation != "jump_right" and body_anim.animation != "jump_left":
+		if body_anim.animation == "move_right":
+			body_anim.animation = "jump_right"
+		else:
+			body_anim.animation = "jump_left"
+		body_anim.speed_scale = 3
 		body_anim.playing = true
 	
 	if state == State.Jumping || state == State.Airborn:
-		if body_anim.frame == 1:
-			body_anim.playing = false
-		if Input.is_action_just_released("jump"):
+		if !Input.is_action_pressed("jump") or jump_max.is_stopped():
 			body_anim.playing = true
-			body_anim.animation = "move_right"
+		elif body_anim.frame == 1:
+			body_anim.playing = false
+		if body_anim.frame == 3:
+			if body_anim.animation == "jump_right":
+				body_anim.animation = "move_right"
+			else:
+				body_anim.animation = "move_left"
+			body_anim.speed_scale = 1
+			body_anim.playing = false
 	
 	if abs(linear_velocity.x) > 0:
 		# Dynamic tread speed :)

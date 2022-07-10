@@ -17,3 +17,12 @@ tile_data = PoolIntArray( 327681, 0, 65536, 327688, 0, 65537, 327689, 0, 2, 3276
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 77, 264 )
+
+[node name="Player2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 721, 264 )
+flipped = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 400, 225 )
+rotating = true
+current = true
