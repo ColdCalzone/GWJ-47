@@ -18,6 +18,22 @@ region = Rect2( 112, 0, 16, 24 )
 atlas = ExtResource( 1 )
 region = Rect2( 32, 0, 16, 24 )
 
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 24 )
+
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 1 )
 region = Rect2( 64, 0, 16, 24 )
@@ -30,22 +46,6 @@ region = Rect2( 80, 0, 16, 24 )
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 16, 24 )
 
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 1 )
-region = Rect2( 16, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 1 )
-region = Rect2( 32, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 16, 24 )
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 23 ), SubResource( 25 ) ],
@@ -53,9 +53,9 @@ animations = [ {
 "name": "jump_left",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 13 ), SubResource( 22 ) ],
+"frames": [ SubResource( 17 ), SubResource( 18 ) ],
 "loop": true,
-"name": "jump_right",
+"name": "move_left",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 15 ), SubResource( 16 ) ],
@@ -63,9 +63,9 @@ animations = [ {
 "name": "move_right",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 17 ), SubResource( 18 ) ],
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 13 ), SubResource( 22 ) ],
 "loop": true,
-"name": "move_left",
+"name": "jump_right",
 "speed": 5.0
 } ]
 
@@ -86,8 +86,8 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=21]
-radius = 13.0
-height = 4.0
+radius = 6.0
+height = 3.0
 
 [node name="Player" type="RigidBody2D"]
 collision_layer = 2
@@ -97,21 +97,19 @@ physics_material_override = SubResource( 12 )
 script = ExtResource( 2 )
 
 [node name="Body" type="AnimatedSprite" parent="."]
-scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "move_right"
 
 [node name="Treads" type="AnimatedSprite" parent="."]
-scale = Vector2( 2, 2 )
 frames = SubResource( 8 )
 animation = "move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1, 9 )
+position = Vector2( 0.5, 4.5 )
 shape = SubResource( 21 )
 
 [node name="JumpMin" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.05
 one_shot = true
 
 [node name="JumpMax" type="Timer" parent="."]
@@ -119,24 +117,18 @@ wait_time = 0.3
 one_shot = true
 
 [node name="Down" type="RayCast2D" parent="."]
+position = Vector2( 0.5, 4.5 )
 enabled = true
-cast_to = Vector2( 0, 25 )
-collide_with_areas = true
-
-[node name="Right" type="RayCast2D" parent="."]
-enabled = true
-cast_to = Vector2( 14, 0 )
-collision_mask = 3
-collide_with_areas = true
-
-[node name="Left" type="RayCast2D" parent="."]
-enabled = true
-cast_to = Vector2( -12, 0 )
-collision_mask = 3
+cast_to = Vector2( 0, 8 )
+collision_mask = 5
 collide_with_areas = true
 
 [node name="Up" type="RayCast2D" parent="."]
+position = Vector2( 0.5, 4.5 )
 enabled = true
-cast_to = Vector2( 0, -8 )
+cast_to = Vector2( 0, -10 )
 collision_mask = 3
 collide_with_areas = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2( 0.4, 0.4 )

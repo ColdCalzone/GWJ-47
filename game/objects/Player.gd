@@ -1,11 +1,10 @@
 extends RigidBody2D
 
-const MAX_SPEED : float = 200.0
-const ACCEL : float = 1200.0
-const JUMP_MAX_SPEED : float = -300.0
-const JUMP_IMPUSE : float = -350.0
-const JUMP_DEACCEL : float = 5.0
-const FRICTION : float = -720.0
+const MAX_SPEED : float = 100.0
+const ACCEL : float = 700.0
+const JUMP_IMPUSE : float = -250.0
+const JUMP_DEACCEL : float = 2.5
+const FRICTION : float = -360.0
 
 # Animation
 onready var body_anim : AnimatedSprite = $Body
@@ -18,11 +17,9 @@ onready var jump_max : Timer = $JumpMax
 var coyote : float = 0.25
 const COYOTE_MAX : float = 0.25
 
-# Collision stuff
-onready var up : RayCast2D = $Up
+# Floor stuff
 onready var down : RayCast2D = $Down
-onready var left : RayCast2D = $Left
-onready var right : RayCast2D = $Right
+onready var up : RayCast2D = $Up
 
 export var flipped : bool = false
 var flipped_coefficient : float = 1
@@ -42,7 +39,7 @@ func _ready():
 	flipped_coefficient = int(flipped) * 2 - 1
 
 # Animation stuff is handled here
-func _process(delta):
+func _process(_delta):
 	# right = 1 left = -1
 	var direction = (Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")) * flipped_coefficient
 	if(direction != 0) and state == State.Grounded:
@@ -51,13 +48,19 @@ func _process(delta):
 		elif direction < 0:
 			body_anim.animation = "move_left"
 		body_anim.playing = true
+		if body_anim.speed_scale != 1:
+			body_anim.speed_scale = 1
 	elif state == State.Grounded:
 		body_anim.playing = false
+		if body_anim.animation == "jump_right":
+			body_anim.animation = "move_right"
+		elif body_anim.animation == "jump_left":
+			body_anim.animation = "move_left"
 	
 	if state == State.Jumping and body_anim.animation != "jump_right" and body_anim.animation != "jump_left":
 		if body_anim.animation == "move_right":
 			body_anim.animation = "jump_right"
-		else:
+		elif body_anim.animation == "jump_left":
 			body_anim.animation = "jump_left"
 		body_anim.speed_scale = 3
 		body_anim.playing = true
@@ -83,6 +86,8 @@ func _process(delta):
 		tread_anim.playing = false
 
 func _physics_process(delta):
+	if up.is_colliding() and state == State.Jumping:
+		state = State.Airborn
 	if Input.is_action_just_pressed("jump") and state != State.Airborn:
 		state = State.Jumping
 		jump.start()
@@ -111,9 +116,8 @@ func _integrate_forces(_state):
 	if vx < 0: vx = 0
 	linear_velocity.x = vx * sign(linear_velocity.x)
 	if state == State.Jumping:
-		if linear_velocity.y >= 0: linear_velocity.y = JUMP_IMPUSE #clamp(linear_velocity.y + JUMP_ACCEL, JUMP_MAX_SPEED, 0)
+		if linear_velocity.y >= 0: linear_velocity.y = JUMP_IMPUSE
 		linear_velocity.y += JUMP_DEACCEL * step
 	if state == State.Airborn:
 		linear_velocity.y = max(linear_velocity.y, JUMP_IMPUSE / 2)
-		linear_velocity.y + JUMP_DEACCEL * step * 1.5
 	linear_velocity.x = clamp(linear_velocity.x, -MAX_SPEED, MAX_SPEED)

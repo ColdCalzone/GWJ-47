@@ -12,8 +12,9 @@ onready var _scenes = {
 func transition_to(to):
 	var scene = _scenes.get(to)
 	if scene == null: return
-	tween.interpolate_property(color, "color:a", 0, 1.0, 0.2)
-	tween.interpolate_property(color, "color:a", 1, 0.0, 0.2, 0, 2, 0.25)
-	tween.start()
+	# this is ugly but I hate warnings
+	var _x = tween.interpolate_property(color, "color:a", 0, 1.0, 0.2)
+	var _y = tween.interpolate_property(color, "color:a", 1, 0.0, 0.2, 0, 2, 0.25)
+	var _z = tween.start()
 	yield(tween, "tween_completed")
-	get_tree().change_scene_to(scene)
+	var _a = get_tree().change_scene_to(scene)
