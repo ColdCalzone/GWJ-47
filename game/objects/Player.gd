@@ -21,9 +21,12 @@ const COYOTE_MAX : float = 0.25
 onready var down : RayCast2D = $Down
 onready var up : RayCast2D = $Up
 
+onready var tread_sound : AudioStreamPlayer = $TreadAudio
+
 export var flipped : bool = false
 var flipped_coefficient : float = 1
-var tread_speed : float = 1
+
+var sound_time : float = 0
 
 # States the player enters
 # Not doing a proper Finite State Machine, but that may be something I need to change.
@@ -39,7 +42,7 @@ func _ready():
 	flipped_coefficient = int(flipped) * 2 - 1
 
 # Animation stuff is handled here
-func _process(_delta):
+func _process(delta):
 	# right = 1 left = -1
 	var direction = (Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")) * flipped_coefficient
 	if(direction != 0) and state == State.Grounded:
@@ -81,6 +84,10 @@ func _process(_delta):
 	if abs(linear_velocity.x) > 0:
 		# Dynamic tread speed :)
 		tread_anim.speed_scale = max(abs(linear_velocity.x) / 50.0, 0.8)
+		sound_time += abs(linear_velocity.x / 10.0) * delta
+		if sound_time > 1:
+			sound_time = 0
+			tread_sound.play()
 		tread_anim.playing = true
 	else:
 		tread_anim.playing = false

@@ -9,7 +9,7 @@ extents = Vector2( 6, 1.5 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 4, 1 )
 
-[node name="Button" type="KinematicBody2D"]
+[node name="Button" type="KinematicBody2D" groups=["Button"]]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 2 )
@@ -24,6 +24,7 @@ position = Vector2( 0, 6.5 )
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0, 5 )

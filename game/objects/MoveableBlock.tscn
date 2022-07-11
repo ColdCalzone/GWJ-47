@@ -27,7 +27,9 @@ region = Rect2( 48, 16, 16, 16 )
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 4, 0.75 )
 
-[node name="MoveableBlock" type="KinematicBody2D"]
+[node name="MoveableBlock" type="KinematicBody2D" groups=["MoveableBlock"]]
+z_index = 1
+collision_layer = 9
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

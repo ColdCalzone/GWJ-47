@@ -31,7 +31,7 @@ func _ready():
 		area_state[x] = 0 < activated_arrows & int(pow(2, x))
 		areas[x].monitoring = area_state[x]
 
-func _on_Top_body_entered(body):
+func _on_Top_body_entered(_b):
 	if world_up.is_colliding(): return
 	tween.interpolate_property(self, "position:y", position.y, position.y + 16, 0.5)
 	for area in areas:
@@ -41,7 +41,7 @@ func _on_Top_body_entered(body):
 	for x in range(4):
 		areas[x].monitoring = area_state[x]
 
-func _on_Bottom_body_entered(body):
+func _on_Bottom_body_entered(_b):
 	if world_down.is_colliding(): return
 	tween.interpolate_property(self, "position:y", position.y, position.y - 16, 0.5)
 	for area in areas:
@@ -51,7 +51,7 @@ func _on_Bottom_body_entered(body):
 	for x in range(4):
 		areas[x].monitoring = area_state[x]
 
-func _on_Left_body_entered(body):
+func _on_Left_body_entered(_b):
 	if world_left.is_colliding(): return
 	tween.interpolate_property(self, "position:x", position.x, position.x + 16, 0.5)
 	for area in areas:
@@ -61,7 +61,7 @@ func _on_Left_body_entered(body):
 	for x in range(4):
 		areas[x].monitoring = area_state[x]
 
-func _on_Right_body_entered(body):
+func _on_Right_body_entered(_b):
 	if world_right.is_colliding(): return
 	tween.interpolate_property(self, "position:x", position.x, position.x - 16, 0.5)
 	for area in areas:
