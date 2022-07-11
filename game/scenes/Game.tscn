@@ -1,20 +1,32 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://objects/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/MoveableBlock.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/Button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/DynamicBlock_tileset.tres" type="TileSet" id=5]
+[ext_resource path="res://scenes/Game.gd" type="Script" id=6]
 
 [node name="Game" type="Node2D"]
+script = ExtResource( 6 )
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="StaticWorld" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 4
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 327681, 0, 65536, 327688, 0, 65537, 327689, 0, 2, 327690, 0, 2, 327691, 0, 2, 327692, 0, 2, 327693, 0, 2, 327694, 0, 2, 327695, 0, 2, 327696, 0, 65538, 327703, 0, 65536, 393217, 0, 131072, 393223, 0, 1, 393224, 0, 196610, 393232, 0, 196609, 393233, 0, 3, 393239, 0, 131072, 458753, 0, 196609, 458754, 0, 3, 458758, 0, 0, 458760, 0, 131072, 458768, 0, 131072, 458770, 0, 0, 458774, 0, 1, 458775, 0, 196610, 524289, 0, 131072, 524293, 0, 65536, 524296, 0, 131072, 524304, 0, 131072, 524307, 0, 65536, 524311, 0, 131072, 589825, 0, 131073, 589826, 0, 2, 589827, 0, 2, 589828, 0, 2, 589829, 0, 196611, 589830, 0, 2, 589831, 0, 2, 589832, 0, 131074, 589840, 0, 131073, 589841, 0, 2, 589842, 0, 2, 589843, 0, 196611, 589844, 0, 2, 589845, 0, 2, 589846, 0, 2, 589847, 0, 131074, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655381, 1, 0, 655382, 1, 0, 655383, 1, 0 )
+tile_data = PoolIntArray( 327681, 0, 65536, 327688, 0, 65537, 327689, 0, 2, 327690, 0, 2, 327691, 0, 2, 327692, 0, 2, 327693, 0, 2, 327694, 0, 2, 327695, 0, 2, 327696, 0, 65538, 327703, 0, 65536, 393217, 0, 131072, 393223, 0, 1, 393224, 0, 196610, 393232, 0, 196609, 393233, 0, 3, 393239, 0, 131072, 458753, 0, 196609, 458754, 0, 3, 458758, 0, 0, 458760, 0, 131072, 458768, 0, 131072, 458770, 0, 0, 458774, 0, 1, 458775, 0, 196610, 524289, 0, 131072, 524293, 0, 65536, 524296, 0, 131072, 524304, 0, 131072, 524307, 0, 65536, 524311, 0, 131072, 589825, 0, 131073, 589826, 0, 2, 589827, 0, 2, 589828, 0, 2, 589829, 0, 196611, 589830, 0, 2, 589831, 0, 2, 589832, 0, 131074, 589840, 0, 131073, 589841, 0, 2, 589842, 0, 2, 589843, 0, 196611, 589844, 0, 2, 589845, 0, 2, 589846, 0, 2, 589847, 0, 131074, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655381, 1, 0, 655382, 1, 0, 655383, 1, 0 )
+
+[node name="DynamicBlocks" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 4
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 65539, 0, 4, 65540, 0, 5, 65541, 0, 6, 65543, 0, 65536, 65546, 0, 65536, 65549, 0, 1, 65550, 0, 2, 65551, 0, 3, 65554, 0, 65536, 131075, 0, 65540, 131076, 0, 65541, 131077, 0, 65542, 131079, 0, 131073, 131080, 0, 2, 131081, 0, 2, 131082, 0, 131074, 131089, 0, 1, 131090, 0, 131075, 131091, 0, 3, 196611, 0, 131076, 196612, 0, 131077, 196613, 0, 131078, 196626, 0, 131072, 262161, 0, 4, 262162, 0, 131079, 262163, 0, 5, 262164, 0, 5, 262165, 0, 5, 262166, 0, 6, 327697, 0, 131076, 327698, 0, 131077, 327699, 0, 131077, 327700, 0, 131077, 327701, 0, 131077, 327702, 0, 131078 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 38, 132 )
@@ -38,13 +50,15 @@ position = Vector2( 328, 120 )
 activated_arrows = 7
 
 [node name="Button" parent="." instance=ExtResource( 4 )]
-position = Vector2( 200, 72 )
+position = Vector2( 168, 72 )
 
 [node name="Button2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 176, 72 )
+position = Vector2( 184, 72 )
+toggle = false
 
 [node name="Button3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 212, 72 )
+position = Vector2( 200, 72 )
+toggle = false
 
 [node name="Button4" parent="." instance=ExtResource( 4 )]
-position = Vector2( 188, 72 )
+position = Vector2( 216, 72 )
