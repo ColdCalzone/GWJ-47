@@ -18,7 +18,6 @@ onready var arrows = [
 ]
 
 func set_arrows(value : int):
-	print(value)
 	activated_arrows = value
 	for x in range(4):
 		arrows[x].visible = 0 < activated_arrows & int(pow(2, x))

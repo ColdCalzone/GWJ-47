@@ -3,5 +3,5 @@
 [ext_resource path="res://src/Eminent_Hearers.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 32
+size = 45
 font_data = ExtResource( 1 )

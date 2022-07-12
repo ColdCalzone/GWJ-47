@@ -6,7 +6,7 @@ onready var sprite = $Sprite
 
 export var only_once = true
 export var toggle = true
-export(Dictionary) var signal_data
+export(Array) var controlled_colors = []
 export var color = -1
 export var enabled = true setget set_enabled, get_enabled
 
@@ -37,7 +37,7 @@ func _on_Area2D_body_entered(body):
 	value = true
 	sprite.region_rect.position.x = (16 * int(value)) + (color * 32 * int(!enabled))
 	if only_once: area.set_deferred("monitoring", false)
-	emit_signal("depressed", signal_data)
+	emit_signal("depressed", controlled_colors)
 
 
 func _on_Area2D_body_exited(body):
@@ -45,4 +45,4 @@ func _on_Area2D_body_exited(body):
 		value = false
 		sprite.region_rect.position.x = 0 + (color * 32 * int(!enabled))
 	if !toggle:
-		emit_signal("released", signal_data)
+		emit_signal("released", controlled_colors)

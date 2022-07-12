@@ -40,6 +40,8 @@ var state = State.Grounded
 
 func _ready():
 	flipped_coefficient = int(flipped) * 2 - 1
+	if flipped:
+		body_anim.animation = "move_left"
 
 # Animation stuff is handled here
 func _process(delta):
@@ -63,7 +65,7 @@ func _process(delta):
 	if state == State.Jumping and body_anim.animation != "jump_right" and body_anim.animation != "jump_left":
 		if body_anim.animation == "move_right":
 			body_anim.animation = "jump_right"
-		elif body_anim.animation == "jump_left":
+		elif body_anim.animation == "move_left":
 			body_anim.animation = "jump_left"
 		body_anim.speed_scale = 3
 		body_anim.playing = true

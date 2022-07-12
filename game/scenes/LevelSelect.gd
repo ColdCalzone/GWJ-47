@@ -18,3 +18,7 @@ func _ready():
 func level_selected(level : String):
 	LevelData.current_level = level
 	TransitionManager.transition_to(Scenes.Scenes.Game)
+
+
+func _on_Back_pressed():
+	TransitionManager.transition_to(Scenes.Scenes.Titlescreen)

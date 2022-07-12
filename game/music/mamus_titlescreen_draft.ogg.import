@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mamus_titlescreen_draft.ogg-17f9945a34c7256d3272761ad000ad28.oggstr"
+
+[deps]
+
+source_file="res://music/mamus_titlescreen_draft.ogg"
+dest_files=[ "res://.import/mamus_titlescreen_draft.ogg-17f9945a34c7256d3272761ad000ad28.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=3.428

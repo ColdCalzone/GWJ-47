@@ -14,10 +14,11 @@ func _ready():
 	yield(get_tree().create_timer(1.625), "timeout")
 	yield(get_tree().create_timer(0.125), "timeout")
 	label.visible = true
+	MusicPlayer.load_file("res://music/mamus_titlescreen_draft.ogg", true, -8)
 	yield(get_tree().create_timer(1.0), "timeout")
 	tween.interpolate_property(label, "rect_scale", Vector2.ONE, Vector2.ONE * 1.05, 0.2, Tween.TRANS_QUART, Tween.EASE_OUT)
 	tween.interpolate_property(label, "rect_scale", Vector2.ONE * 1.05, Vector2.ONE, 0.2, Tween.TRANS_QUINT, Tween.EASE_IN_OUT, 0.2)
-	bloop.play()
+	#bloop.play()
 	tween.start()
 	yield(get_tree().create_timer(0.2), "timeout")
 	tween.interpolate_property(label, "modulate:a", 1.0, 0.0, 0.75)
@@ -30,6 +31,7 @@ var time = 0.0
 func _input(event):
 	if event is InputEventKey:
 		tween.stop_all()
+		MusicPlayer.load_file("res://music/mamus_titlescreen_draft.ogg", true, -8)
 		TransitionManager.transition_to(Scenes.Scenes.Titlescreen)
 
 func _process(delta):
