@@ -64,13 +64,66 @@ collision_mask = 0
 format = 1
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( 22, 195 )
+position = Vector2( 22, 196 )
 
 [node name="MoveableBlock" parent="." instance=ExtResource( 4 )]
 position = Vector2( 56, 168 )
-activated_arrows = 3
+activated_arrows = 11
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 200, 113 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+margin_left = 80.0
+margin_top = 114.0
+margin_right = 240.0
+margin_bottom = 227.0
+rect_rotation = 180.0
+rect_pivot_offset = Vector2( 160, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 160, 113 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Camera2D" type="Camera2D" parent="ViewportContainer/Viewport"]
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="StaticWorld2" type="TileMap" parent="ViewportContainer/Viewport" groups=["Static"]]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 4
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 0, 0, 65537, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 2, 6, 0, 2, 7, 0, 2, 8, 0, 2, 9, 0, 65538, 65536, 0, 131072, 65545, 0, 131072, 131072, 0, 131072, 131081, 0, 131072, 196608, 0, 131072, 196617, 0, 131072, 262144, 0, 131072, 262153, 0, 131072, 327680, 0, 131072, 327689, 0, 131072, 393216, 0, 131073, 393217, 0, 2, 393218, 0, 2, 393219, 0, 3, 393224, 0, 1, 393225, 0, 131074 )
+
+[node name="DynamicBlocks2" type="TileMap" parent="ViewportContainer/Viewport" groups=["Dynamic"]]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 4
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+collision_mask = 0
+format = 1
+
+[node name="Death2" type="TileMap" parent="ViewportContainer/Viewport"]
+tile_set = SubResource( 50 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 4
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+collision_layer = 32768
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 65535, 1, 0, 131071, 1, 0, 196607, 1, 0, 262143, 1, 0, 327679, 1, 0, 393215, 1, 0, 458751, 1, 0, 524287, 1, 0, 458752, 0, 65537, 458753, 0, 2, 458754, 0, 2, 458755, 0, 2, 458756, 0, 2, 458757, 0, 2, 458758, 0, 2, 458759, 0, 2, 458760, 0, 2, 458761, 0, 65538, 589823, 1, 0, 524297, 1, 0, 655359, 1, 0, 589833, 1, 0, 720895, 1, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 720896, 0, 131072, 786432, 0, 131072, 786441, 0, 131072, 851968, 0, 131073, 851969, 0, 2, 851970, 0, 2, 851971, 0, 3, 851976, 0, 1, 851977, 0, 131074 )
+
+[node name="Player2" parent="ViewportContainer/Viewport" instance=ExtResource( 5 )]
+position = Vector2( 22, 84 )
+
+[node name="MoveableBlock2" parent="ViewportContainer/Viewport" instance=ExtResource( 4 )]
+position = Vector2( 72, 104 )

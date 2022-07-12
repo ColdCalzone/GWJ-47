@@ -8,7 +8,7 @@ onready var _scenes = {
 	Scenes.Scenes.Settings: load("res://scenes/Settings.tscn"),
 	Scenes.Scenes.Credits: load("res://scenes/Credits.tscn"),
 	Scenes.Scenes.LevelSelect: load("res://scenes/LevelSelect.tscn"),
-	Scenes.Scenes.Game: load("res://scenes/Game.tscn"),
+	Scenes.Scenes.Game: 0,
 	Scenes.Scenes.None : 0
 }
 
@@ -22,11 +22,12 @@ func transition_to(to, level : int = -1):
 	yield(tween, "tween_completed")
 	if to != Scenes.Scenes.None:
 		if to == Scenes.Scenes.Game:
+			if level > -1:
+				LevelData.current_level = level
 			Bg.rect_scale = Vector2.ONE * 0.5
+			var _a = get_tree().change_scene_to(LevelData.levels[LevelData.current_level])
 		else:
 			Bg.rect_scale = Vector2.ONE
-		var _a = get_tree().change_scene_to(scene)
+			var _a = get_tree().change_scene_to(scene)
 	else:
 		get_tree().quit()
-	if level > -1:
-		LevelData.current_level = level

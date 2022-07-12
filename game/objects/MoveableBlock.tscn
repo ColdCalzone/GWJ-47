@@ -96,18 +96,22 @@ shape = SubResource( 6 )
 [node name="WorldCheckUp" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, 16 )
+collision_mask = 9
 
 [node name="WorldCheckDown" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, -16 )
+collision_mask = 9
 
 [node name="WorldCheckLeft" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 16, 0 )
+collision_mask = 9
 
 [node name="WorldCheckRight" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( -16, 0 )
+collision_mask = 9
 
 [connection signal="body_entered" from="Top" to="." method="_on_Top_body_entered"]
 [connection signal="body_entered" from="Bottom" to="." method="_on_Bottom_body_entered"]

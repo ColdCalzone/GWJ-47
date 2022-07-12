@@ -10,14 +10,12 @@ onready var temp_button : Button = $GridContainer/Button
 
 func _ready():
 	for button in buttons:
-		assert(button is Button)
 		# TODO make the bind dynamic
-		button.connect("pressed", self, "level_selected", [""])
-	temp_button.connect("pressed", self, "level_selected", [""])
+		button.connect("pressed", self, "level_selected", [0])
+	temp_button.connect("pressed", self, "level_selected", [0])
 
 func level_selected(level : int):
-	LevelData.current_level = level
-	TransitionManager.transition_to(Scenes.Scenes.Game)
+	TransitionManager.transition_to(Scenes.Scenes.Game, level)
 
 
 func _on_Back_pressed():

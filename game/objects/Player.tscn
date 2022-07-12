@@ -115,6 +115,7 @@ frames = SubResource( 8 )
 animation = "move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0.5, 4.5 )
 shape = SubResource( 21 )
 
@@ -127,6 +128,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="Down" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0.5, 4.5 )
 enabled = true
 cast_to = Vector2( 0, 8 )
@@ -134,6 +136,7 @@ collision_mask = 5
 collide_with_areas = true
 
 [node name="Up" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0.5, 4.5 )
 enabled = true
 cast_to = Vector2( 0, -10 )
@@ -148,6 +151,7 @@ volume_db = -16.0
 bus = "SFX"
 
 [node name="PlayerPlatform" type="KinematicBody2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -158,6 +162,7 @@ one_way_collision = true
 one_way_collision_margin = 0.0
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 32768
 
