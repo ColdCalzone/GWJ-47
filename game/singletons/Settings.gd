@@ -8,12 +8,12 @@ var fullscreen : bool = false setget set_fullscreen
 var backgrounds : bool = true setget set_background
 
 var colors = [
-	Color("68386c"),
-	Color("b55088"),
-	Color("f6757a"),
-	Color("3a4466"),
-	Color("262b44")
-]
+			Color("265c42"),
+			Color("f77622"),
+			Color("e43b44"),
+			Color("124e89"),
+			Color("5a6988")
+		]
 
 var config : ConfigFile
 
@@ -27,12 +27,12 @@ func load_config():
 		set_sound_volume(config.get_value("sound", "sound_volume", 1.0))
 		set_fullscreen(config.get_value("video", "fullscreen", false))
 		set_background(config.get_value("video", "backgrounds", true))
-		set_background(config.get_value("video", "colors", [
-			Color("68386c"),
-			Color("b55088"),
-			Color("f6757a"),
-			Color("3a4466"),
-			Color("262b44")
+		set_colors(config.get_value("video", "colors", [
+			Color("265c42"),
+			Color("f77622"),
+			Color("e43b44"),
+			Color("124e89"),
+			Color("5a6988")
 		]))
 
 func save_config():
@@ -58,6 +58,10 @@ func set_fullscreen(value):
 func set_background(value):
 	Bg.visible = value
 	backgrounds = value
+
+func set_colors(array):
+	for i in range(array.size()):
+		set_color(array[i], i)
 
 func set_color(value, id):
 	colors[id] = value

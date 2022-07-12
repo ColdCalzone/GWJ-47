@@ -13,7 +13,7 @@ func _on_Settings_pressed():
 
 
 func _on_Quit_pressed():
-	pass # Replace with function body.
+	TransitionManager.transition_to(Scenes.Scenes.None)
 
 
 func _on_Credits_pressed():

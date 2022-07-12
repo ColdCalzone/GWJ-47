@@ -31,6 +31,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 800.0
+margin_bottom = 450.0
+color = Color( 0, 0, 0, 1 )
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_right = 800.0
 margin_bottom = 450.0

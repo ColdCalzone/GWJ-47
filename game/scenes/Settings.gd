@@ -14,12 +14,12 @@ onready var music = $CenterContainer/VBoxContainer2/VBoxContainer/HBoxContainer/
 onready var sfx = $CenterContainer/VBoxContainer2/VBoxContainer/HBoxContainer2/SFX
 
 var default_colors = [
-	Color("68386c"),
-	Color("b55088"),
-	Color("f6757a"),
-	Color("3a4466"),
-	Color("262b44")
-]
+			Color("265c42"),
+			Color("f77622"),
+			Color("e43b44"),
+			Color("124e89"),
+			Color("5a6988")
+		]
 
 func _ready():
 	for x in range(Settings.colors.size()):
@@ -42,6 +42,7 @@ func _on_Reset_pressed():
 
 
 func _on_Back_pressed():
+	Settings.save_config()
 	TransitionManager.transition_to(Scenes.Scenes.Titlescreen)
 
 

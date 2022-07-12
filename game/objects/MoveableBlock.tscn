@@ -25,7 +25,7 @@ atlas = ExtResource( 1 )
 region = Rect2( 48, 16, 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 4, 0.75 )
+extents = Vector2( 3, 0.75 )
 
 [node name="MoveableBlock" type="KinematicBody2D" groups=["MoveableBlock"]]
 z_index = 1

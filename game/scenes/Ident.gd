@@ -8,6 +8,7 @@ onready var bloop = $AudioStreamPlayer
 onready var tween = $Tween
 
 func _ready():
+	Settings.load_config()
 	set_process(false)
 	yield(get_tree().create_timer(1.0), "timeout")
 	set_process(true)
