@@ -6,6 +6,7 @@ const JUMP_IMPUSE : float = -250.0
 const JUMP_DEACCEL : float = 2.5
 const FRICTION : float = -360.0
 
+
 # Animation
 onready var body_anim : AnimatedSprite = $Body
 onready var tread_anim : AnimatedSprite = $Treads
@@ -22,6 +23,7 @@ onready var down : RayCast2D = $Down
 onready var up : RayCast2D = $Up
 
 onready var tread_sound : AudioStreamPlayer = $TreadAudio
+onready var death_sound : AudioStreamPlayer = $DeathAudio
 
 export var flipped : bool = false
 var flipped_coefficient : float = 1
@@ -37,6 +39,10 @@ enum State {
 }
 
 var state = State.Grounded
+
+var dead = false
+
+signal player_died
 
 func _ready():
 	flipped_coefficient = int(flipped) * 2 - 1
@@ -118,6 +124,7 @@ func _physics_process(delta):
 
 func _integrate_forces(_state):
 	var step = _state.get_step()
+	if dead: return
 	var direction = (Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")) * flipped_coefficient
 	linear_velocity.x += (ACCEL * direction) * step
 	var vx = abs(linear_velocity.x)
@@ -130,3 +137,12 @@ func _integrate_forces(_state):
 	if state == State.Airborn:
 		linear_velocity.y = max(linear_velocity.y, JUMP_IMPUSE / 2)
 	linear_velocity.x = clamp(linear_velocity.x, -MAX_SPEED, MAX_SPEED)
+
+func die():
+	for player in get_tree().get_nodes_in_group("player"):
+		player.dead = true
+	death_sound.play()
+	emit_signal("player_died")
+
+func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	if !dead: die()

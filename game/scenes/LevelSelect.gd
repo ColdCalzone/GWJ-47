@@ -15,7 +15,7 @@ func _ready():
 		button.connect("pressed", self, "level_selected", [""])
 	temp_button.connect("pressed", self, "level_selected", [""])
 
-func level_selected(level : String):
+func level_selected(level : int):
 	LevelData.current_level = level
 	TransitionManager.transition_to(Scenes.Scenes.Game)
 

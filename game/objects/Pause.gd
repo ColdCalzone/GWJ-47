@@ -1,10 +1,14 @@
 extends CanvasLayer
 
+var mode = 0
 
-
-func _ready():
+func _enter_tree():
 	MusicPlayer.stop()
 	get_tree().paused = true
+	if mode == 1:
+		$Conotrol/CenterContainer/VBoxContainer/Resume.visible = false
+		$Conotrol/CenterContainer2/Label.text = "Game Over"
+		$Conotrol/CenterContainer2/Label2.text = "Game Over"
 
 func _exit_tree():
 	get_tree().paused = false

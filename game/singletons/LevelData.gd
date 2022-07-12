@@ -1,6 +1,10 @@
 extends Node
 
-var current_level : String = ""
+var levels = [
+	
+]
+
+var current_level : int = 0
 
 func _ready():
 	pass

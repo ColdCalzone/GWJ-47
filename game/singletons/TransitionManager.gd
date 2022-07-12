@@ -12,7 +12,7 @@ onready var _scenes = {
 	Scenes.Scenes.None : 0
 }
 
-func transition_to(to):
+func transition_to(to, level : int = -1):
 	var scene = _scenes.get(to)
 	if scene == null: return
 	# this is ugly but I hate warnings
@@ -21,6 +21,12 @@ func transition_to(to):
 	var _z = tween.start()
 	yield(tween, "tween_completed")
 	if to != Scenes.Scenes.None:
+		if to == Scenes.Scenes.Game:
+			Bg.rect_scale = Vector2.ONE * 0.5
+		else:
+			Bg.rect_scale = Vector2.ONE
 		var _a = get_tree().change_scene_to(scene)
 	else:
 		get_tree().quit()
+	if level > -1:
+		LevelData.current_level = level

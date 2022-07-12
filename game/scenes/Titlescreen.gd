@@ -1,8 +1,7 @@
 extends Control
 
 func _ready():
-	Bg.visible = true
-
+	Bg.visible = Settings.backgrounds
 
 func _on_Play_pressed():
 	TransitionManager.transition_to(Scenes.Scenes.LevelSelect)
