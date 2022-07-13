@@ -28,6 +28,7 @@ margin_right = 528.0
 margin_bottom = 450.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
+columns = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -39,10 +40,35 @@ rect_min_size = Vector2( 0, 51 )
 custom_fonts/font = ExtResource( 3 )
 text = "level1"
 
+[node name="Button2" type="Button" parent="GridContainer"]
+margin_left = 188.0
+margin_right = 368.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 0, 51 )
+custom_fonts/font = ExtResource( 3 )
+text = "level2"
+
+[node name="Button3" type="Button" parent="GridContainer"]
+margin_left = 376.0
+margin_right = 556.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 0, 51 )
+custom_fonts/font = ExtResource( 3 )
+text = "level3"
+
+[node name="Button4" type="Button" parent="GridContainer"]
+margin_left = 564.0
+margin_right = 744.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 0, 51 )
+custom_fonts/font = ExtResource( 3 )
+text = "level4"
+
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = 520.0
 margin_right = 800.0
 margin_bottom = 450.0
+mouse_filter = 2
 color = Color( 0, 0, 0, 0.490196 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -52,6 +78,7 @@ __meta__ = {
 margin_left = 528.0
 margin_right = 800.0
 margin_bottom = 452.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -60,12 +87,14 @@ __meta__ = {
 margin_right = 272.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Preview/TextureCenter"]
 margin_left = 136.0
 margin_top = 100.0
 margin_right = 136.0
 margin_bottom = 100.0
+mouse_filter = 2
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 4
@@ -75,6 +104,7 @@ margin_top = 204.0
 margin_right = 272.0
 margin_bottom = 452.0
 rect_min_size = Vector2( 0, 248 )
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Preview/TextCenter"]
 margin_right = 272.0

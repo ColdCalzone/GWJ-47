@@ -8,7 +8,7 @@ export var only_once = true
 export var toggle = true
 export(Array) var controlled_colors = []
 export var color = -1
-export var enabled = true setget set_enabled, get_enabled
+export var enabled = true setget set_enabled
 
 var value : bool = false
 
@@ -22,6 +22,7 @@ func _ready():
 	area.monitoring = enabled
 
 func set_enabled(val):
+	print(val)
 	enabled = val
 	if area is Area2D:
 		area.set_deferred("monitoring", enabled and !(only_once and value))
@@ -29,9 +30,6 @@ func set_enabled(val):
 		collision.set_deferred("disabled", !enabled)
 	if sprite is Sprite:
 		sprite.region_rect.position.x = (16 * int(value)) + (color * 32 * int(!enabled))
-
-func get_enabled():
-	return enabled
 
 func _on_Area2D_body_entered(body):
 	value = true

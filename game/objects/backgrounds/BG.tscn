@@ -3,16 +3,15 @@
 [ext_resource path="res://objects/backgrounds/BG.gd" type="Script" id=1]
 
 [node name="Control" type="Control"]
-visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 800.0
+margin_bottom = 452.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ViewportContainer2" type="ViewportContainer" parent="."]
-margin_left = 402.0
-margin_right = 802.0
+margin_left = 400.0
+margin_right = 800.0
 margin_bottom = 450.0
 rect_scale = Vector2( -1, 1 )
 __meta__ = {
@@ -22,7 +21,7 @@ __meta__ = {
 [node name="Viewport" type="Viewport" parent="ViewportContainer2"]
 size = Vector2( 400, 450 )
 handle_input_locally = false
-render_target_update_mode = 0
+render_target_update_mode = 3
 
 [node name="Camera2D" type="Camera2D" parent="ViewportContainer2/Viewport"]
 
@@ -41,7 +40,7 @@ __meta__ = {
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
 size = Vector2( 400, 450 )
 handle_input_locally = false
-render_target_update_mode = 0
+render_target_update_mode = 3
 
 [node name="Camera2D" type="Camera2D" parent="ViewportContainer/Viewport"]
 

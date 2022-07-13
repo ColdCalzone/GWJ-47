@@ -51,6 +51,7 @@ func _ready():
 
 # Animation stuff is handled here
 func _process(delta):
+	if dead: return
 	# right = 1 left = -1
 	var direction = (Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")) * flipped_coefficient
 	if(direction != 0) and state == State.Grounded:
@@ -141,6 +142,9 @@ func _integrate_forces(_state):
 func die():
 	for player in get_tree().get_nodes_in_group("player"):
 		player.dead = true
+	for block in get_tree().get_nodes_in_group("MoveableBlock"):
+		for area in block.areas:
+			area.monitoring = false
 	death_sound.play()
 	emit_signal("player_died")
 

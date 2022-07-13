@@ -15,7 +15,10 @@ func _exit_tree():
 
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):
-		_on_Resume_pressed()
+		if mode == 0:
+			_on_Resume_pressed()
+		else:
+			_on_Restart_pressed()
 
 func _on_Resume_pressed():
 	queue_free()

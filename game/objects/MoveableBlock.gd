@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 export var activated_arrows = 0
+export var world = 0
 
 onready var arrows = $Arrows
 
@@ -25,6 +26,8 @@ var area_state = [
 	true,
 ]
 
+signal moved
+
 func _ready():
 	arrows.activated_arrows = activated_arrows
 	for x in range(4):
@@ -40,6 +43,7 @@ func _on_Top_body_entered(_b):
 	yield(tween, "tween_all_completed")
 	for x in range(4):
 		areas[x].monitoring = area_state[x]
+	emit_signal("moved")
 
 func _on_Bottom_body_entered(_b):
 	if world_down.is_colliding(): return
@@ -50,6 +54,7 @@ func _on_Bottom_body_entered(_b):
 	yield(tween, "tween_all_completed")
 	for x in range(4):
 		areas[x].monitoring = area_state[x]
+	emit_signal("moved")
 
 func _on_Left_body_entered(_b):
 	if world_left.is_colliding(): return
@@ -60,6 +65,7 @@ func _on_Left_body_entered(_b):
 	yield(tween, "tween_all_completed")
 	for x in range(4):
 		areas[x].monitoring = area_state[x]
+	emit_signal("moved")
 
 func _on_Right_body_entered(_b):
 	if world_right.is_colliding(): return
@@ -70,3 +76,4 @@ func _on_Right_body_entered(_b):
 	yield(tween, "tween_all_completed")
 	for x in range(4):
 		areas[x].monitoring = area_state[x]
+	emit_signal("moved")
