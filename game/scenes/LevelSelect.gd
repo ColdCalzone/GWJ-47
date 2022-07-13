@@ -7,6 +7,7 @@ onready var buttons = [
 ]
 
 func _ready():
+	MusicPlayer.load_file("res://music/mamus_titlescreen_draft.ogg", true)
 	for button in buttons:
 		# TODO make the bind dynamic
 		button.connect("pressed", self, "level_selected", [0])

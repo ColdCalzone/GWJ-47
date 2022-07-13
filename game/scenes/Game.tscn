@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://sprites/tileset.png" type="Texture" id=2]
 [ext_resource path="res://src/tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://objects/DynamicBlocks.gd" type="Script" id=4]
 [ext_resource path="res://src/DynamicBlock_tileset.tres" type="TileSet" id=6]
 [ext_resource path="res://sprites/sparkle.png" type="Texture" id=7]
 [ext_resource path="res://sfx/levelcomplete.wav" type="AudioStream" id=8]
@@ -64,6 +65,7 @@ cell_quadrant_size = 4
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 collision_mask = 0
 format = 1
+script = ExtResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 200, 112 )
@@ -131,6 +133,8 @@ cell_quadrant_size = 4
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 collision_mask = 0
 format = 1
+script = ExtResource( 4 )
+world = 1
 
 [node name="Death2" type="TileMap" parent="ViewportContainer/Viewport"]
 tile_set = SubResource( 50 )

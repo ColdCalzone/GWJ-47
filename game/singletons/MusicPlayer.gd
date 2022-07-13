@@ -7,7 +7,7 @@ var _music_files = {
 var current_song : String
 
 func load_file(file, play : bool = false, volume : float = 0):
-	if current_song == file: return
+	if current_song == file and playing: return
 	volume_db = volume
 	if !_music_files.has(file):
 		_music_files[file] = load(file)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://sprites/tileset.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/DynamicBlock_tileset.tres" type="TileSet" id=6]
 [ext_resource path="res://sprites/sparkle.png" type="Texture" id=7]
 [ext_resource path="res://sfx/levelcomplete.wav" type="AudioStream" id=8]
+[ext_resource path="res://objects/DynamicBlocks.gd" type="Script" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=49]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -67,6 +68,8 @@ cell_quadrant_size = 4
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 collision_mask = 0
 format = 1
+tile_data = PoolIntArray( 655363, 4, 1, 655364, 4, 65538, 720900, 4, 131072, 786436, 4, 131072, 851972, 4, 196608 )
+script = ExtResource( 9 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 21, 196 )
@@ -80,35 +83,6 @@ position = Vector2( 200, 112 )
 rotating = true
 current = true
 zoom = Vector2( 0.5, 0.5 )
-
-[node name="WinParticles" type="CPUParticles2D" parent="."]
-position = Vector2( 0, -16 )
-emitting = false
-amount = 64
-lifetime = 3.47
-texture = ExtResource( 7 )
-direction = Vector2( 1, 20 )
-initial_velocity = 74.07
-initial_velocity_random = 0.67
-angular_velocity = 71.11
-orbit_velocity = -0.2
-tangential_accel = -20.0
-scale_amount = 1.5
-
-[node name="WinParticles2" type="CPUParticles2D" parent="."]
-position = Vector2( 400, 240 )
-rotation = 3.14159
-emitting = false
-amount = 64
-lifetime = 3.47
-texture = ExtResource( 7 )
-direction = Vector2( 1, 20 )
-initial_velocity = 74.07
-initial_velocity_random = 0.67
-angular_velocity = 71.11
-orbit_velocity = -0.2
-tangential_accel = -20.0
-scale_amount = 1.5
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 margin_left = 400.0
@@ -144,6 +118,8 @@ cell_quadrant_size = 4
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 collision_mask = 0
 format = 1
+script = ExtResource( 9 )
+world = 1
 
 [node name="Death2" type="TileMap" parent="ViewportContainer/Viewport"]
 tile_set = SubResource( 50 )
@@ -165,3 +141,32 @@ world = 1
 [node name="Victory" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 bus = "SFX"
+
+[node name="WinParticles" type="CPUParticles2D" parent="."]
+position = Vector2( 0, -16 )
+emitting = false
+amount = 64
+lifetime = 3.47
+texture = ExtResource( 7 )
+direction = Vector2( 1, 20 )
+initial_velocity = 74.07
+initial_velocity_random = 0.67
+angular_velocity = 71.11
+orbit_velocity = -0.2
+tangential_accel = -20.0
+scale_amount = 1.5
+
+[node name="WinParticles2" type="CPUParticles2D" parent="."]
+position = Vector2( 400, 240 )
+rotation = -3.14159
+emitting = false
+amount = 64
+lifetime = 3.47
+texture = ExtResource( 7 )
+direction = Vector2( 1, 20 )
+initial_velocity = 74.07
+initial_velocity_random = 0.67
+angular_velocity = 71.11
+orbit_velocity = -0.2
+tangential_accel = -20.0
+scale_amount = 1.5

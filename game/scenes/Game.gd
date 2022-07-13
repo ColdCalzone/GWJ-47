@@ -14,6 +14,8 @@ onready var win_particles = [$WinParticles, $WinParticles2]
 
 onready var level_complete = $Victory
 
+var symmetry = false
+
 func _ready():
 	var buttons = get_tree().get_nodes_in_group("Button")
 	for button in buttons:
@@ -35,10 +37,13 @@ func restart():
 
 # colors is an array of ints - 0 for green, 1 for blue, 2 for red
 func toggle_colors(colors):
+	if symmetry: return
 	if colors is Array:
 		var blocks = get_tree().get_nodes_in_group("MoveableBlock")
 		var buttons = get_tree().get_nodes_in_group("Button")
+		var block_worlds : Dictionary = {}
 		for block in range(blocks.size()):
+			block_worlds[blocks[block].position] = blocks[block].world
 			blocks[block] = blocks[block].position
 		for color in colors:
 			for dynamic_tilemap in dynamic_tilemaps:
@@ -46,7 +51,8 @@ func toggle_colors(colors):
 				var solid = dynamic_tilemap.get_used_cells_by_id(color * 2 + 1)
 				for cell in outline:
 					if blocks.has(cell * 16 + (Vector2.ONE * 8)):
-						continue
+						if block_worlds[cell * 16 + (Vector2.ONE * 8)] == dynamic_tilemap.world:
+							continue
 					dynamic_tilemap.set_cellv(cell, color * 2 + 1)
 					dynamic_tilemap.update_bitmask_area(cell)
 				for cell in solid:
@@ -79,15 +85,19 @@ func check_symmetry(_x = null):
 	var blocks = get_tree().get_nodes_in_group("MoveableBlock")
 	var block_positions = []
 	for x in range(blocks.size()):
-		if block_positions.size() < blocks[x].world + 1:
+		while block_positions.size() < blocks[x].world + 1:
 			block_positions.push_back([])
-		block_positions[blocks[x].world].push_back(blocks[x].position + sym_offsets[blocks[x].world - 1])
+		var offset : Vector2 = Vector2.ZERO
+		if sym_offsets.has(blocks[x].world - 1):
+			offset = sym_offsets[blocks[x].world - 1]
+		block_positions[blocks[x].world].push_back(blocks[x].position + offset)
 	for world in range(block_positions.size() - 1):
 		for block in range(block_positions[world].size()):
 			if block_positions[world].find(block_positions[world + 1][block]) == -1:
 				symmetrical = false
 				break
 		if !symmetrical: break
+	symmetry = symmetrical
 	if symmetrical:
 		win()
 
@@ -114,3 +124,4 @@ func game_over():
 	var game_over = PAUSE.instance()
 	game_over.mode = 1
 	add_child(game_over)
+	MusicPlayer.play()

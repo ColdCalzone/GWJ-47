@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://sprites/tileset.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://src/DynamicBlock_tileset.tres" type="TileSet" id=6]
 [ext_resource path="res://sprites/sparkle.png" type="Texture" id=7]
 [ext_resource path="res://sfx/levelcomplete.wav" type="AudioStream" id=8]
+[ext_resource path="res://objects/MoveableBlock.tscn" type="PackedScene" id=9]
+[ext_resource path="res://objects/DynamicBlocks.gd" type="Script" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=49]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -68,6 +70,7 @@ cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 524297, 1, 65536, 524301, 5, 65536, 524311, 1, 65536, 589833, 1, 131072, 589837, 5, 131072, 589847, 1, 131072, 655369, 1, 131072, 655373, 5, 131072, 655383, 1, 196608, 720905, 1, 131072, 720909, 5, 131072, 720918, 2, 1, 720919, 2, 3, 786441, 1, 196608, 786445, 5, 196608, 786455, 1, 0 )
+script = ExtResource( 10 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 21, 196 )
@@ -77,11 +80,16 @@ position = Vector2( 136, 200 )
 controlled_colors = [ 1 ]
 color = 1
 
+[node name="MoveableBlock" parent="." instance=ExtResource( 9 )]
+position = Vector2( 360, 168 )
+activated_arrows = 15
+
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 margin_top = 224.0
 margin_right = 401.0
 margin_bottom = 449.0
 rect_scale = Vector2( 1, -1 )
+stretch_shrink = 15
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -103,6 +111,11 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 458752, 0, 65537, 458753, 0, 2, 458754, 0, 2, 458755, 0, 2, 458756, 0, 2, 458757, 0, 2, 458758, 0, 2, 458759, 0, 2, 458760, 0, 2, 458761, 0, 2, 458762, 0, 2, 458763, 0, 2, 458764, 0, 2, 458765, 0, 2, 458766, 0, 2, 458767, 0, 2, 458768, 0, 2, 458769, 0, 2, 458770, 0, 2, 458771, 0, 2, 458772, 0, 2, 458773, 0, 2, 458774, 0, 2, 458775, 0, 2, 458776, 0, 65538, 524288, 0, 131072, 524312, 0, 131072, 589824, 0, 131072, 589848, 0, 131072, 655360, 0, 131072, 655384, 0, 131072, 720896, 0, 131072, 720920, 0, 131072, 786432, 0, 131072, 786456, 0, 131072, 851968, 0, 131073, 851969, 0, 2, 851970, 0, 2, 851971, 0, 2, 851972, 0, 2, 851973, 0, 2, 851974, 0, 2, 851975, 0, 2, 851976, 0, 2, 851977, 0, 2, 851978, 0, 2, 851979, 0, 2, 851980, 0, 2, 851981, 0, 2, 851982, 0, 2, 851983, 0, 2, 851984, 0, 2, 851985, 0, 2, 851986, 0, 2, 851987, 0, 2, 851988, 0, 2, 851989, 0, 2, 851990, 0, 2, 851991, 0, 2, 851992, 0, 131074 )
 
+[node name="MoveableBlock2" parent="ViewportContainer/Viewport" instance=ExtResource( 9 )]
+position = Vector2( 376, 200 )
+z_index = -1
+world = 1
+
 [node name="DynamicBlocks2" type="TileMap" parent="ViewportContainer/Viewport" groups=["Dynamic"]]
 tile_set = ExtResource( 6 )
 cell_size = Vector2( 16, 16 )
@@ -111,6 +124,8 @@ cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 524293, 3, 65536, 524297, 1, 65536, 524301, 5, 65536, 589829, 3, 131072, 589833, 1, 131072, 589837, 5, 131072, 655365, 3, 131072, 655369, 1, 131072, 655373, 5, 131072, 655381, 5, 65537, 655382, 5, 2, 655383, 5, 3, 720901, 3, 131072, 720905, 1, 131072, 720909, 5, 131072, 720917, 5, 131072, 720918, 2, 1, 720919, 2, 3, 786437, 3, 196608, 786441, 1, 196608, 786445, 5, 196608, 786453, 5, 131073, 786454, 5, 2, 786455, 5, 3 )
+script = ExtResource( 10 )
+world = 1
 
 [node name="Death2" type="TileMap" parent="ViewportContainer/Viewport"]
 tile_set = SubResource( 50 )
