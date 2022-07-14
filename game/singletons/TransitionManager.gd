@@ -38,7 +38,9 @@ func game_win_handler():
 	var beaten = 0
 	for level in LevelData.save_data["levels"].values():
 		beaten += int(level["beaten"])
-	if beaten == LevelData.save_data["levels"].size():
+	if beaten == LevelData.save_data["levels"].size() and not LevelData.save_data["thanked"]:
+		LevelData.save_data["thanked"] = true
+		LevelData.save()
 		TransitionManager.transition_to(Scenes.Scenes.Thanks)
 	else:
 		TransitionManager.transition_to(Scenes.Scenes.LevelSelect)

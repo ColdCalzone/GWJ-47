@@ -3,7 +3,8 @@ extends Node
 const SAVE_PATH = "user://save.json"
 
 var save_data : Dictionary = {
-	"levels": {}
+	"levels": {},
+	"thanked" : false
 }
 
 class Level:
