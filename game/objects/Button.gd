@@ -22,7 +22,6 @@ func _ready():
 	area.monitoring = enabled
 
 func set_enabled(val):
-	print(val)
 	enabled = val
 	if area is Area2D:
 		area.set_deferred("monitoring", enabled and !(only_once and value))

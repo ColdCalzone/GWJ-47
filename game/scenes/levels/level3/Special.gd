@@ -8,5 +8,5 @@ extends Node2D
 
 func _process(delta):
 	rotation = rotation + delta / 50
-	if rotation >= 360:
+	if rotation > 6.282:
 		rotation = 0
