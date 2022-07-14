@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Eminent_Hearers.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/EminentHearers.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scenes/Settings.gd" type="Script" id=3]
+[ext_resource path="res://src/Button.tres" type="Theme" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 38
@@ -134,6 +135,7 @@ margin_left = 4.0
 margin_top = 389.0
 margin_right = 128.0
 margin_bottom = 446.0
+theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 2 )
 text = "Back"
 __meta__ = {

@@ -1,0 +1,170 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://src/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/Button.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/Thanks.gd" type="Script" id=3]
+[ext_resource path="res://objects/Player.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 203, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 52 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 164, 10 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 57.5, 10.25 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 10, 77 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 8, 58.5 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 196.5, 10.5 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 196.5, 10.5 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 12, 55.5 )
+
+[node name="Thanks" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 800.0
+margin_bottom = 51.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 1 )
+text = "THANK YOU FOR PLAYING!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 185.0
+margin_top = 29.0
+margin_right = 1045.0
+margin_bottom = 188.0
+rect_scale = Vector2( 0.25, 0.25 )
+theme = ExtResource( 1 )
+text = "It's been a while since I've jammed, and especially since I've done Godot Wild Jam."
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 2.0
+margin_top = 63.0
+margin_right = 862.0
+margin_bottom = 330.0
+rect_scale = Vector2( 0.25, 0.25 )
+theme = ExtResource( 1 )
+text = "Making this has been a blast and I want to thank all of you in GWJ for getting me this passionate about game development!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 191.0
+margin_top = 118.0
+margin_right = 1051.0
+margin_bottom = 439.0
+rect_scale = Vector2( 0.25, 0.25 )
+theme = ExtResource( 1 )
+text = "I hope the content in this game has been sufficient. I really liked all the levels.
+If you want to milk more out of this game, I suggest speedrunning ;)"
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_top = 200.0
+margin_right = 800.0
+margin_bottom = 251.0
+rect_scale = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="CenterContainer"]
+margin_left = 204.0
+margin_right = 596.0
+margin_bottom = 51.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 196, 25 )
+theme = ExtResource( 2 )
+text = "Return to menu"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+collision_layer = 3
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 201, 136 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 415, 93 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 259, 29 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 56.5, 9 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -10, 71 )
+shape = SubResource( 5 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( 807, 191.5 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( 618.5, 124.5 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( 618.5, 244.5 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( 414, 199.5 )
+shape = SubResource( 9 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 7, 49 )
+
+[node name="Player2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 393, 104 )
+flipped = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[connection signal="pressed" from="CenterContainer/Button" to="." method="_on_Button_pressed"]

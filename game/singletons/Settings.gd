@@ -41,7 +41,8 @@ func save_config():
 	config.set_value("video", "fullscreen", fullscreen)
 	config.set_value("video", "backgrounds", backgrounds)
 	config.set_value("video", "colors", colors)
-	config.save(CONFIG_PATH)
+	if config.save(CONFIG_PATH) != OK:
+		print("ERROR SAVING SETTINGS")
 
 func set_music_volume(value):
 	music_volume = value
@@ -58,6 +59,7 @@ func set_fullscreen(value):
 func set_background(value):
 	Bg.visible = value
 	backgrounds = value
+	Bg.set_process(value)
 
 func set_colors(array):
 	for i in range(array.size()):

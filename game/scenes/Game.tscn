@@ -36,9 +36,6 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_horizontal_guides_": [ 191.0 ]
-}
 
 [node name="StaticWorld" type="TileMap" parent="." groups=["Static"]]
 tile_set = ExtResource( 3 )

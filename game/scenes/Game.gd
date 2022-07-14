@@ -16,7 +16,10 @@ onready var level_complete = $Victory
 
 var symmetry = false
 
+signal game_won
+
 func _ready():
+	var _x = connect("game_won", TransitionManager, "game_win_handler")
 	var buttons = get_tree().get_nodes_in_group("Button")
 	for button in buttons:
 		button.connect("depressed", self, "toggle_colors")
@@ -117,7 +120,7 @@ func win():
 	tween.start()
 	level_complete.play()
 	yield(level_complete, "finished")
-	TransitionManager.transition_to(Scenes.Scenes.LevelSelect)
+	emit_signal("game_won")
 
 func game_over():
 	yield(get_tree().create_timer(1.0), "timeout")

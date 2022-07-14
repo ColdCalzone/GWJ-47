@@ -145,8 +145,11 @@ func die():
 	for block in get_tree().get_nodes_in_group("MoveableBlock"):
 		for area in block.areas:
 			area.monitoring = false
-	death_sound.play()
 	emit_signal("player_died")
 
-func _on_Area2D_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+func play_death_sound():
+	death_sound.play()
+
+func _on_Area2D_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):
 	if !dead: die()
+	play_death_sound()

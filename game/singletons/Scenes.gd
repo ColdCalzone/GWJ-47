@@ -7,4 +7,5 @@ enum Scenes {
 	Credits,
 	LevelSelect,
 	Game,
+	Thanks,
 }

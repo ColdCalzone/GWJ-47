@@ -8,6 +8,7 @@ onready var _scenes = {
 	Scenes.Scenes.Settings: load("res://scenes/Settings.tscn"),
 	Scenes.Scenes.Credits: load("res://scenes/Credits.tscn"),
 	Scenes.Scenes.LevelSelect: load("res://scenes/LevelSelect.tscn"),
+	Scenes.Scenes.Thanks: load("res://scenes/Thanks.tscn"),
 	Scenes.Scenes.Game: 0,
 	Scenes.Scenes.None : 0
 }
@@ -25,9 +26,20 @@ func transition_to(to, level : int = -1):
 			if level > -1:
 				LevelData.current_level = level
 			Bg.rect_scale = Vector2.ONE * 0.5
-			var _a = get_tree().change_scene_to(LevelData.levels[LevelData.current_level])
+			var _a = get_tree().change_scene_to(LevelData.levels[LevelData.current_level].level)
 		else:
 			Bg.rect_scale = Vector2.ONE
 			var _a = get_tree().change_scene_to(scene)
 	else:
 		get_tree().quit()
+
+func game_win_handler():
+	LevelData.set_level_beaten(LevelData.current_level)
+	var beaten = 0
+	for level in LevelData.save_data["levels"].values():
+		beaten += int(level["beaten"])
+	if beaten == LevelData.save_data["levels"].size():
+		TransitionManager.transition_to(Scenes.Scenes.Thanks)
+	else:
+		TransitionManager.transition_to(Scenes.Scenes.LevelSelect)
+	

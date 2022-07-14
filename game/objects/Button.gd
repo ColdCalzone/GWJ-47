@@ -30,14 +30,14 @@ func set_enabled(val):
 	if sprite is Sprite:
 		sprite.region_rect.position.x = (16 * int(value)) + (color * 32 * int(!enabled))
 
-func _on_Area2D_body_entered(body):
+func _on_Area2D_body_entered(_body):
 	value = true
 	sprite.region_rect.position.x = (16 * int(value)) + (color * 32 * int(!enabled))
 	if only_once: area.set_deferred("monitoring", false)
 	emit_signal("depressed", controlled_colors)
 
 
-func _on_Area2D_body_exited(body):
+func _on_Area2D_body_exited(_body):
 	if !only_once:
 		value = false
 		sprite.region_rect.position.x = 0 + (color * 32 * int(!enabled))

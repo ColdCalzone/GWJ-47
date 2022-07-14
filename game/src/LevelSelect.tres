@@ -9,7 +9,8 @@ bg_color = Color( 0.6, 0.6, 0.6, 0.313726 )
 
 [sub_resource type="StyleBoxEmpty" id=7]
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.6, 0.6, 0.6, 0.52549 )
 
 [resource]
 Button/styles/disabled = SubResource( 4 )
