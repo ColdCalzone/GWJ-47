@@ -19,6 +19,7 @@ var symmetry = false
 signal game_won
 
 func _ready():
+	SpeedrunTimer.reset()
 	if LevelData.save_data["thanked"]:
 		SpeedrunTimer.start_counting()
 	MusicPlayer.load_file("res://music/mamus_level_draft.ogg", true)
@@ -129,9 +130,8 @@ func win():
 	emit_signal("game_won")
 
 func game_over():
-	SpeedrunTimer.reset()
+	SpeedrunTimer.stop_counting()
 	yield(get_tree().create_timer(1.0), "timeout")
 	var game_over = PAUSE.instance()
 	game_over.mode = 1
 	add_child(game_over)
-	MusicPlayer.play()
