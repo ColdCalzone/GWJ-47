@@ -14,9 +14,9 @@ __meta__ = {
 }
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
-margin_top = 20.0
+margin_top = 27.0
 margin_right = 800.0
-margin_bottom = 260.0
+margin_bottom = 267.0
 rect_pivot_offset = Vector2( 400, 120 )
 mouse_filter = 1
 __meta__ = {

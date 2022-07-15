@@ -54,8 +54,9 @@ func toggle_colors(colors):
 				var outline = dynamic_tilemap.get_used_cells_by_id(color * 2)
 				var solid = dynamic_tilemap.get_used_cells_by_id(color * 2 + 1)
 				for cell in outline:
-					if block_worlds[dynamic_tilemap.world].has(cell * 16 + (Vector2.ONE * 8)):
-						continue
+					if block_worlds.size() > dynamic_tilemap.world:
+						if block_worlds[dynamic_tilemap.world].has(cell * 16 + (Vector2.ONE * 8)):
+							continue
 					dynamic_tilemap.set_cellv(cell, color * 2 + 1)
 					dynamic_tilemap.update_bitmask_area(cell)
 				for cell in solid:

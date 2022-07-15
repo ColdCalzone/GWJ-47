@@ -13,10 +13,14 @@ func _ready():
 	var button_theme = load("res://src/LevelSelect.tres")
 	
 	var checkmark : TextureRect = TextureRect.new()
-	checkmark.texture = load("res://sprites/checkmark.png")
 	checkmark.rect_size = Vector2.ONE * 16
 	checkmark.expand = true
 	checkmark.rect_position = Vector2(92, 82)
+	var padlock : TextureRect = checkmark.duplicate()
+	padlock.rect_size *= 1.5
+	padlock.rect_position -= Vector2.ONE * 15
+	checkmark.texture = load("res://sprites/checkmark.png")
+	padlock.texture = load("res://sprites/padlock.png")
 	
 	for x in range(LevelData.levels.size()):
 		var button = Button.new()
@@ -27,8 +31,12 @@ func _ready():
 		button.icon = LevelData.levels[x].preview
 		if LevelData.save_data["levels"][LevelData.levels[x].level_name]["beaten"]:
 			button.add_child(checkmark.duplicate())
+		if LevelData.save_data["levels"][LevelData.levels[max(0, x - 1)].level_name]["beaten"] or x == 0:
+			button.connect("mouse_entered", self, "preview_level", [x])
+		else:
+			button.add_child(padlock.duplicate())
+			button.disabled = true
 		button.connect("pressed", self, "level_selected", [x])
-		button.connect("mouse_entered", self, "preview_level", [x])
 		button.connect("mouse_exited", self, "preview_level", [-1])
 
 func preview_level(level : int):
