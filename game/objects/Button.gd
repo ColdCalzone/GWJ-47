@@ -4,7 +4,7 @@ onready var area = $Area2D
 onready var collision = $CollisionShape2D
 onready var sprite = $Sprite
 
-export var only_once = true
+export var only_once = false
 export var toggle = true
 export(Array) var controlled_colors = []
 export var color = -1

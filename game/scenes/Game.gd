@@ -1,9 +1,5 @@
 extends Node2D
 
-export(Array) var sym_offsets = [
-	Vector2(0, 0)
-]
-
 onready var dynamic_tilemaps : Array = get_tree().get_nodes_in_group("Dynamic")
 
 onready var camera = $Camera2D
@@ -49,18 +45,17 @@ func toggle_colors(colors):
 	if colors is Array:
 		var blocks = get_tree().get_nodes_in_group("MoveableBlock")
 		var buttons = get_tree().get_nodes_in_group("Button")
-		var block_worlds : Dictionary = {}
+		var block_worlds : Array = []
 		for block in range(blocks.size()):
-			block_worlds[blocks[block].position] = blocks[block].world
-			blocks[block] = blocks[block].position
+			if not block_worlds.size() > block: block_worlds.push_back([])
+			block_worlds[blocks[block].world].push_back(blocks[block].position)
 		for color in colors:
 			for dynamic_tilemap in dynamic_tilemaps:
 				var outline = dynamic_tilemap.get_used_cells_by_id(color * 2)
 				var solid = dynamic_tilemap.get_used_cells_by_id(color * 2 + 1)
 				for cell in outline:
-					if blocks.has(cell * 16 + (Vector2.ONE * 8)):
-						if block_worlds[cell * 16 + (Vector2.ONE * 8)] == dynamic_tilemap.world:
-							continue
+					if block_worlds[dynamic_tilemap.world].has(cell * 16 + (Vector2.ONE * 8)):
+						continue
 					dynamic_tilemap.set_cellv(cell, color * 2 + 1)
 					dynamic_tilemap.update_bitmask_area(cell)
 				for cell in solid:
@@ -96,8 +91,6 @@ func check_symmetry(_x = null):
 		while block_positions.size() < blocks[x].world + 1:
 			block_positions.push_back([])
 		var offset : Vector2 = Vector2.ZERO
-		if sym_offsets.has(blocks[x].world - 1):
-			offset = sym_offsets[blocks[x].world - 1]
 		block_positions[blocks[x].world].push_back(blocks[x].position + offset)
 	for world in range(block_positions.size() - 1):
 		for block in range(block_positions[world].size()):

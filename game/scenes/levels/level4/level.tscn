@@ -74,7 +74,6 @@ position = Vector2( 102, 196 )
 
 [node name="Button" parent="." instance=ExtResource( 10 )]
 position = Vector2( 136, 200 )
-only_once = false
 toggle = false
 controlled_colors = [ 1 ]
 
@@ -140,13 +139,11 @@ world = 1
 
 [node name="Button2" parent="ViewportContainer/Viewport" instance=ExtResource( 10 )]
 position = Vector2( 280, 200 )
-only_once = false
 toggle = false
 controlled_colors = [ 0 ]
 
 [node name="Button3" parent="ViewportContainer/Viewport" instance=ExtResource( 10 )]
 position = Vector2( 136, 200 )
-only_once = false
 toggle = false
 controlled_colors = [ 2 ]
 
