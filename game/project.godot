@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GWJ 47"
+config/name="Mamus"
 run/main_scene="res://scenes/Ident.tscn"
 boot_splash/image="res://wallpaper.png"
 boot_splash/bg_color=Color( 0.0588235, 0.121569, 0.184314, 1 )
@@ -33,6 +33,7 @@ LevelData="*res://singletons/LevelData.gd"
 MusicPlayer="*res://singletons/MusicPlayer.tscn"
 Bg="*res://objects/backgrounds/BG.tscn"
 Settings="*res://singletons/Settings.gd"
+SpeedrunTimer="*res://singletons/SpeedrunTimer.tscn"
 
 [display]
 

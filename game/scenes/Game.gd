@@ -19,6 +19,9 @@ var symmetry = false
 signal game_won
 
 func _ready():
+	if LevelData.save_data["thanked"]:
+		SpeedrunTimer.start_counting()
+	MusicPlayer.load_file("res://music/mamus_level_draft.ogg", true)
 	var _x = connect("game_won", TransitionManager, "game_win_handler")
 	var buttons = get_tree().get_nodes_in_group("Button")
 	for button in buttons:
@@ -36,6 +39,7 @@ func _process(_delta):
 		MusicPlayer.play(playback_pos)
 
 func restart():
+	SpeedrunTimer.reset()
 	TransitionManager.transition_to(Scenes.Scenes.Game)
 
 # colors is an array of ints - 0 for green, 1 for blue, 2 for red
@@ -105,6 +109,7 @@ func check_symmetry(_x = null):
 		win()
 
 func win():
+	SpeedrunTimer.stop_counting()
 	MusicPlayer.stop()
 	# Jank way to make the players stop moving
 	for player in get_tree().get_nodes_in_group("player"):
@@ -118,11 +123,13 @@ func win():
 		part.emitting = true
 		tween.interpolate_property(part, "position:x", part.position.x, abs(part.position.x - 400), 3.0, Tween.TRANS_QUAD)
 	tween.start()
+	set_process(false)
 	level_complete.play()
 	yield(level_complete, "finished")
 	emit_signal("game_won")
 
 func game_over():
+	SpeedrunTimer.reset()
 	yield(get_tree().create_timer(1.0), "timeout")
 	var game_over = PAUSE.instance()
 	game_over.mode = 1

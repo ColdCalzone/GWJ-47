@@ -1,9 +1,10 @@
 extends Control
 
-onready var logo = $CenterContainer2
+onready var logo = $CenterContainer2/TextureRect
 onready var tween = $Tween
 
 func _ready():
+	MusicPlayer.load_file("res://music/mamus_titlescreen_draft.ogg", true)
 	Bg.visible = Settings.backgrounds
 
 func _on_Play_pressed():

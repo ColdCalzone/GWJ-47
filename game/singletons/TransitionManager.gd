@@ -29,6 +29,7 @@ func transition_to(to, level : int = -1):
 			var _a = get_tree().change_scene_to(LevelData.levels[LevelData.current_level].level)
 		else:
 			Bg.rect_scale = Vector2.ONE
+			SpeedrunTimer.hide()
 			var _a = get_tree().change_scene_to(scene)
 	else:
 		get_tree().quit()
