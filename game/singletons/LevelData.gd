@@ -22,7 +22,8 @@ var descriptions = {
 	"level1": "Absolutely Pivoting",
 	"level2": "Reflect on that.",
 	"level3": "Triple Trouble",
-	"level4": "Pushing all your button(s).",
+	"level4": "Pushing all your buttons.",
+	"level5": "Pushing all your button(s).",
 }
 
 var current_level : int = 0
