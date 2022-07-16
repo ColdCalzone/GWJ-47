@@ -11,6 +11,7 @@ class Level:
 	var level
 	var level_name
 	var description
+	var display_name
 	var preview
 	static func sort(a, b):
 		return a.level_name < b.level_name
@@ -18,11 +19,18 @@ class Level:
 var levels = [
 ]
 # grrrrr
-var descriptions = {
+var names = {
 	"level1": "Absolutely Pivoting",
 	"level2": "Reflect on that.",
-	"level3": "Triple Trouble",
-	"level4": "Pushing all your buttons.",
+	"level3": "Pushing all your buttons.",
+	"level4": "Triple Trouble",
+	"level5": "Pushing all your button(s).",
+}
+var descriptions = {
+	"level1": "Move the block to make both sides match!",
+	"level2": "Move the block and clear away the colors to make both sides match!",
+	"level3": "Get the block across!",
+	"level4": "Make all the colors blank to win!",
 	"level5": "Pushing all your button(s).",
 }
 
@@ -43,6 +51,7 @@ func _ready():
 					level_data.level = load("res://scenes/levels/" + file_name + "/level.tscn")
 					level_data.preview = load("res://scenes/levels/" + file_name + "/preview.png")
 					level_data.level_name = file_name
+					level_data.display_name = names[file_name]
 					level_data.description = descriptions[file_name]
 					if !save_data["levels"].has(file_name):
 						save_data["levels"][file_name] = {

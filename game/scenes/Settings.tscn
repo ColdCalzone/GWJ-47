@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Eminent_Hearers.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/EminentHearers.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scenes/Settings.gd" type="Script" id=3]
 [ext_resource path="res://src/Button.tres" type="Theme" id=4]
+[ext_resource path="res://sprites/reset.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 38
@@ -152,11 +153,11 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2"]
-margin_right = 308.0
-margin_bottom = 79.0
+margin_right = 311.0
+margin_bottom = 82.0
 
 [node name="Label" type="Label" parent="CenterContainer2/VBoxContainer"]
-margin_right = 308.0
+margin_right = 311.0
 margin_bottom = 27.0
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
@@ -167,46 +168,49 @@ align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer2/VBoxContainer"]
 margin_top = 31.0
-margin_right = 308.0
-margin_bottom = 79.0
+margin_right = 311.0
+margin_bottom = 82.0
 
 [node name="Reset" type="Button" parent="CenterContainer2/VBoxContainer/HBoxContainer"]
-margin_right = 48.0
-margin_bottom = 48.0
-text = "Reset"
+margin_right = 51.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 51, 51 )
+theme = ExtResource( 4 )
+icon = ExtResource( 5 )
+expand_icon = true
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="CenterContainer2/VBoxContainer/HBoxContainer"]
-margin_left = 52.0
-margin_right = 100.0
-margin_bottom = 48.0
+margin_left = 55.0
+margin_right = 103.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 48, 48 )
 edit_alpha = false
 
 [node name="ColorPickerButton2" type="ColorPickerButton" parent="CenterContainer2/VBoxContainer/HBoxContainer"]
-margin_left = 104.0
-margin_right = 152.0
-margin_bottom = 48.0
+margin_left = 107.0
+margin_right = 155.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 48, 48 )
 edit_alpha = false
 
 [node name="ColorPickerButton3" type="ColorPickerButton" parent="CenterContainer2/VBoxContainer/HBoxContainer"]
-margin_left = 156.0
-margin_right = 204.0
-margin_bottom = 48.0
+margin_left = 159.0
+margin_right = 207.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 48, 48 )
 edit_alpha = false
 
 [node name="ColorPickerButton4" type="ColorPickerButton" parent="CenterContainer2/VBoxContainer/HBoxContainer"]
-margin_left = 208.0
-margin_right = 256.0
-margin_bottom = 48.0
+margin_left = 211.0
+margin_right = 259.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 48, 48 )
 edit_alpha = false
 
 [node name="ColorPickerButton5" type="ColorPickerButton" parent="CenterContainer2/VBoxContainer/HBoxContainer"]
-margin_left = 260.0
-margin_right = 308.0
-margin_bottom = 48.0
+margin_left = 263.0
+margin_right = 311.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 48, 48 )
 edit_alpha = false
 

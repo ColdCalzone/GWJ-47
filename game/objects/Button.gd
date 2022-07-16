@@ -4,6 +4,8 @@ onready var area = $Area2D
 onready var collision = $CollisionShape2D
 onready var sprite = $Sprite
 
+onready var click = $Click
+
 export var only_once = false
 export var toggle = true
 export(Array) var controlled_colors = []
@@ -35,6 +37,7 @@ func _on_Area2D_body_entered(_body):
 	sprite.region_rect.position.x = (16 * int(value)) + (color * 32 * int(!enabled))
 	if only_once: area.set_deferred("monitoring", false)
 	emit_signal("depressed", controlled_colors)
+	click.play()
 
 
 func _on_Area2D_body_exited(_body):

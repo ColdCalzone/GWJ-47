@@ -4,7 +4,8 @@ onready var grid = $CenterContainer/GridContainer
 
 onready var preview_image = $Preview/TextureCenter/TextureRect
 
-onready var preview_desc = $Preview/TextCenter/Label
+onready var preview_name = $Preview/TextCenter/Label
+onready var preview_description = $Preview/TextCenter2/Label
 
 var rotate = false
 
@@ -18,7 +19,7 @@ func _ready():
 	checkmark.rect_position = Vector2(92, 82)
 	var padlock : TextureRect = checkmark.duplicate()
 	padlock.rect_size *= 1.5
-	padlock.rect_position -= Vector2.ONE * 15
+	padlock.rect_position -= Vector2.ONE * 10
 	checkmark.texture = load("res://sprites/checkmark.png")
 	padlock.texture = load("res://sprites/padlock.png")
 	
@@ -42,12 +43,14 @@ func _ready():
 func preview_level(level : int):
 	if level == -1:
 		rotate = false
-		preview_desc.text = ""
+		preview_name.text = ""
+		preview_description.text = ""
 		preview_image.texture = null
 	else:
 		rotate = true
 		preview_image.texture = LevelData.levels[level].preview
-		preview_desc.text = LevelData.levels[level].description
+		preview_name.text = LevelData.levels[level].display_name
+		preview_description.text = LevelData.levels[level].description
 
 func _process(delta):
 	if rotate:
