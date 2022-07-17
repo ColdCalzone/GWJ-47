@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://sprites/tileset.png" type="Texture" id=2]
 [ext_resource path="res://src/tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://objects/DynamicBlocks.gd" type="Script" id=4]
+[ext_resource path="res://objects/MoveableBlock.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/DynamicBlock_tileset.tres" type="TileSet" id=6]
 [ext_resource path="res://sprites/sparkle.png" type="Texture" id=7]
 [ext_resource path="res://sfx/levelcomplete.wav" type="AudioStream" id=8]
+[ext_resource path="res://objects/Button.tscn" type="PackedScene" id=9]
 [ext_resource path="res://objects/Player.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=49]
@@ -36,6 +38,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 1/z_index = 0
 
 [node name="Game" type="Node2D"]
+position = Vector2( 0, 1 )
 script = ExtResource( 1 )
 
 [node name="Death" type="TileMap" parent="."]
@@ -69,8 +72,26 @@ script = ExtResource( 4 )
 [node name="Player" parent="." instance=ExtResource( 10 )]
 position = Vector2( 293, 68 )
 
+[node name="MoveableBlock2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 88, 184 )
+
+[node name="Button" parent="." instance=ExtResource( 9 )]
+position = Vector2( 248, 104 )
+rotation = 1.5708
+controlled_colors = [ 0 ]
+
+[node name="Button2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 216, 88 )
+controlled_colors = [ 1 ]
+
+[node name="Button3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 376, 56 )
+rotation = 3.14159
+controlled_colors = [ 2 ]
+
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
-margin_right = 400.0
+margin_left = -32.0
+margin_right = 368.0
 margin_bottom = 224.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -90,13 +111,18 @@ cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 4
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
+tile_data = PoolIntArray( 65540, 0, 65537, 65541, 0, 2, 65542, 0, 65538, 131076, 0, 131072, 131078, 0, 131072, 196612, 0, 131072, 196614, 0, 131072, 262148, 0, 131072, 262150, 0, 131072, 327684, 0, 131072, 327686, 0, 131072, 393220, 0, 131072, 393222, 0, 131072, 458756, 0, 131072, 458758, 0, 131072, 524292, 0, 131072, 524294, 0, 131072, 589828, 0, 131072, 589830, 0, 131072, 655364, 0, 131072, 655366, 0, 131072, 720900, 0, 131072, 720902, 0, 131072, 786436, 0, 131073, 786437, 0, 2, 786438, 0, 131074 )
 
-[node name="StaticWorld2" type="TileMap" parent="ViewportContainer/Viewport"]
+[node name="DynamicBlocks2" type="TileMap" parent="ViewportContainer/Viewport" groups=["Dynamic"]]
 tile_set = ExtResource( 6 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 4
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+collision_mask = 0
 format = 1
+tile_data = PoolIntArray( 262149, 3, 0, 327685, 2, 0, 393221, 0, 0, 458757, 1, 0, 524293, 5, 0, 589829, 0, 0, 655365, 1, 0, 720901, 3, 0 )
+script = ExtResource( 4 )
+world = 1
 
 [node name="Death2" type="TileMap" parent="ViewportContainer/Viewport"]
 tile_set = SubResource( 50 )
@@ -108,6 +134,14 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 65533, 1, 0, 27, 1, 0, 131069, 1, 0, 65563, 1, 0, 196605, 1, 0, 131099, 1, 0, 262141, 1, 0, 196635, 1, 0, 327677, 1, 0, 262171, 1, 0, 393213, 1, 0, 327707, 1, 0, 458749, 1, 0, 393243, 1, 0, 524285, 1, 0, 458756, 0, 2, 458760, 0, 2, 458761, 0, 65538, 458779, 1, 0, 589821, 1, 0, 524297, 0, 131072, 524315, 1, 0, 655357, 1, 0, 589833, 0, 131072, 589851, 1, 0, 720893, 1, 0, 655360, 0, 131072, 655369, 0, 131072, 655387, 1, 0, 786429, 1, 0, 720896, 0, 131072, 720905, 0, 131072, 720923, 1, 0, 851965, 1, 0, 786432, 0, 131072, 786441, 0, 131072, 786459, 1, 0, 917501, 1, 0, 851968, 0, 131073, 851969, 0, 2, 851970, 0, 2, 851971, 0, 3, 851976, 0, 1, 851977, 0, 131074, 851995, 1, 0, 983037, 1, 0, 917531, 1, 0, 1048573, 1, 0, 983067, 1, 0, 1114109, 1, 0, 1114110, 1, 0, 1114111, 1, 0, 1048576, 1, 0, 1048577, 1, 0, 1048578, 1, 0, 1048579, 1, 0, 1048580, 1, 0, 1048581, 1, 0, 1048582, 1, 0, 1048583, 1, 0, 1048584, 1, 0, 1048585, 1, 0, 1048586, 1, 0, 1048587, 1, 0, 1048588, 1, 0, 1048589, 1, 0, 1048590, 1, 0, 1048591, 1, 0, 1048592, 1, 0, 1048593, 1, 0, 1048594, 1, 0, 1048595, 1, 0, 1048596, 1, 0, 1048597, 1, 0, 1048598, 1, 0, 1048599, 1, 0, 1048600, 1, 0, 1048601, 1, 0, 1048602, 1, 0, 1048603, 1, 0 )
 
+[node name="MoveableBlock" parent="ViewportContainer/Viewport" instance=ExtResource( 5 )]
+position = Vector2( 88, 56 )
+activated_arrows = 1
+world = 1
+
+[node name="Player" parent="ViewportContainer/Viewport" instance=ExtResource( 10 )]
+position = Vector2( 87, 36 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 200, 112 )
 rotating = true
@@ -116,6 +150,7 @@ zoom = Vector2( 0.5, 0.5 )
 
 [node name="WinParticles" type="CPUParticles2D" parent="."]
 position = Vector2( 0, -16 )
+z_index = 2
 emitting = false
 amount = 64
 lifetime = 3.47
@@ -131,6 +166,7 @@ scale_amount = 1.5
 [node name="WinParticles2" type="CPUParticles2D" parent="."]
 position = Vector2( 400, 240 )
 rotation = 3.14159
+z_index = 2
 emitting = false
 amount = 64
 lifetime = 3.47

@@ -24,14 +24,19 @@ var names = {
 	"level2": "Reflect on that.",
 	"level3": "Pushing all your buttons.",
 	"level4": "Triple Trouble",
-	"level5": "Pushing all your button(s).",
+	"level5": "Paradigm Shift.",
 }
 var descriptions = {
 	"level1": "Move the block to make both sides match!",
 	"level2": "Move the block and clear away the colors to make both sides match!",
 	"level3": "Get the block across!",
 	"level4": "Make all the colors blank to win!",
-	"level5": "Pushing all your button(s).",
+	"level5": "Corporate needs you to find the difference between these two pictures.",
+}
+
+var jank_descriptions = {
+	"level4": "This level has a few collision issues,\nit should not interfere with the experience.",
+	"level5": "This level has a collision issue that will cause Mamus to enter a temporarily enter a wall.\nIt may interfere with the experience.",
 }
 
 var current_level : int = 0

@@ -38,17 +38,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+[node name="GridContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_top = 215.0
 margin_right = 480.0
 margin_bottom = 215.0
 rect_min_size = Vector2( 480, 0 )
-custom_constants/vseparation = 12
-custom_constants/hseparation = 25
-columns = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_constants/separation = 12
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = 520.0
@@ -113,9 +108,10 @@ rect_min_size = Vector2( 0, 100 )
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="Preview/TextCenter2"]
-margin_right = 272.0
+margin_left = 5.0
+margin_right = 267.0
 margin_bottom = 100.0
-rect_min_size = Vector2( 272, 100 )
+rect_min_size = Vector2( 262, 100 )
 focus_mode = 2
 custom_fonts/font = SubResource( 4 )
 align = 1

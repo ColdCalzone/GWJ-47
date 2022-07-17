@@ -19,21 +19,43 @@ func _ready():
 	checkmark.rect_position = Vector2(92, 82)
 	var padlock : TextureRect = checkmark.duplicate()
 	padlock.rect_size *= 1.5
+	var jank : TextureRect = padlock.duplicate()
+	jank.rect_position = Vector2(-20, 0)
 	padlock.rect_position -= Vector2.ONE * 10
 	checkmark.texture = load("res://sprites/checkmark.png")
 	padlock.texture = load("res://sprites/padlock.png")
+	jank.texture = load("res://sprites/jank.png")
+	jank.theme = load("res://src/jank.tres")
 	
+	var hbox : HBoxContainer = HBoxContainer.new()
+	var center = CenterContainer.new()
+	grid.add_child(center)
+	center.add_child(hbox)
+	hbox.add_constant_override("separation", 25)
+	var y = -1
 	for x in range(LevelData.levels.size()):
+		y += 1
+		if y > 2:
+			y = 0
+			hbox = HBoxContainer.new()
+			center = CenterContainer.new()
+			grid.add_child(center)
+			center.add_child(hbox)
+			hbox.add_constant_override("separation", 25)
 		var button = Button.new()
 		button.expand_icon = true
 		button.theme = button_theme
 		button.rect_min_size = Vector2(100, 90)
-		grid.add_child(button)
+		hbox.add_child(button)
 		button.icon = LevelData.levels[x].preview
 		if LevelData.save_data["levels"][LevelData.levels[x].level_name]["beaten"]:
 			button.add_child(checkmark.duplicate())
 		if LevelData.save_data["levels"][LevelData.levels[max(0, x - 1)].level_name]["beaten"] or x == 0:
 			button.connect("mouse_entered", self, "preview_level", [x])
+			if LevelData.jank_descriptions.has(LevelData.levels[x].level_name):
+				var jank_instance = jank.duplicate()
+				jank_instance.hint_tooltip = LevelData.jank_descriptions[LevelData.levels[x].level_name]
+				button.add_child(jank_instance)
 		else:
 			button.add_child(padlock.duplicate())
 			button.disabled = true

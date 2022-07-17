@@ -149,6 +149,7 @@ controlled_colors = [ 2 ]
 
 [node name="WinParticles" type="CPUParticles2D" parent="."]
 position = Vector2( 0, -16 )
+z_index = 2
 emitting = false
 amount = 64
 lifetime = 3.47
@@ -164,6 +165,7 @@ scale_amount = 1.5
 [node name="WinParticles2" type="CPUParticles2D" parent="."]
 position = Vector2( 400, 240 )
 rotation = 3.14159
+z_index = 2
 emitting = false
 amount = 64
 lifetime = 3.47
